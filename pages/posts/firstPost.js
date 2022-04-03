@@ -9,7 +9,7 @@ export default function FirstPost() {
           <title>最初の投稿</title>
       </Head>
       <h1>dddd</h1>
-      <Link href="/">Homeへ戻る</Link>
+        
     </div>
   );
 }

@@ -8,7 +8,9 @@ import Link from "next/link";
 
 import utilsStyle from "../styles/utils.module.css";
 
+// SSRの場合
 export async function getStaticProps() {
+  
   const allPostsData = getPostsData();
   // id,title,date,thumbnailを取得
   console.log({ allPostsData });
@@ -19,6 +21,15 @@ export async function getStaticProps() {
   };
 }
 // 外部からデータを一度だけ取得する関数
+
+// SSGの場合
+// export async function getServerSideProps(context){
+//   return {
+//     props: {
+//       // コンポーネントに渡すためのprops
+//     }
+//   }
+// }
 
 export default function Home({ allPostsData }) {
   return (

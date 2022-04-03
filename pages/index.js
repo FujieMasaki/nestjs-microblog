@@ -2,12 +2,25 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Layout from "./components/Layout";
+import { getPostsData } from "../lib/post";
 
 import Link from "next/link";
 
 import utilsStyle from "../styles/utils.module.css";
 
-export default function Home() {
+export async function getStaticProps(){
+  const allPostsData = getPostsData();
+  // id,title,date,thumbnailを取得
+  console.log({allPostsData})
+  return {
+    props: {
+      allPostsData,
+    }
+  }
+}
+// 外部からデータを一度だけ取得する関数
+
+export default function Home({ allPostsData }) {
   return (
     <Layout>
       <section className={utilsStyle.headingMd}>

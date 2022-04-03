@@ -8,15 +8,15 @@ import Link from "next/link";
 
 import utilsStyle from "../styles/utils.module.css";
 
-export async function getStaticProps(){
+export async function getStaticProps() {
   const allPostsData = getPostsData();
   // id,title,date,thumbnailを取得
-  console.log({allPostsData})
+  console.log({ allPostsData });
   return {
     props: {
       allPostsData,
-    }
-  }
+    },
+  };
 }
 // 外部からデータを一度だけ取得する関数
 
@@ -29,42 +29,24 @@ export default function Home({ allPostsData }) {
       <h1>memoエンジニアのブログ</h1>
       <section>
         <div className={styles.grid}>
-          <article>
-            <Link href="/">
-              <img src="/images/thumbnail01.jpg"
-              className={styles.thumbnailImage}></img>
+          {allPostsData.map(({id,title,date,thumbnail}) =>(
+          <article key={id}>
+            <Link href={`/posts/${id}`}>
+              <img
+                src={`${thumbnail}`}
+                className={styles.thumbnailImage}
+              ></img>
             </Link>
 
-            <Link href="/">
-              <a className={utilsStyle.boldText}>SSRとSSGの使い分けはいつなのか？</a>
+            <Link href={`/posts/${id}`}>
+              <a className={utilsStyle.boldText}>
+               {title}
+              </a>
             </Link>
             <br />
-            <small className={utilsStyle.lightText}>2020</small>
+            <small className={utilsStyle.lightText}>{date}</small>
           </article>
-          <article>
-            <Link href="/">
-              <img src="/images/thumbnail01.jpg"
-              className={styles.thumbnailImage}></img>
-            </Link>
-
-            <Link href="/">
-              <a className={utilsStyle.boldText}>SSRとSSGの使い分けはいつなのか？</a>
-            </Link>
-            <br />
-            <small className={utilsStyle.lightText}>2020</small>
-          </article>
-          <article>
-            <Link href="/">
-              <img src="/images/thumbnail01.jpg"
-              className={styles.thumbnailImage}></img>
-            </Link>
-
-            <Link href="/">
-              <a className={utilsStyle.boldText}>SSRとSSGの使い分けはいつなのか？</a>
-            </Link>
-            <br />
-            <small className={utilsStyle.lightText}>2020</small>
-          </article>
+          ))}
         </div>
       </section>
     </Layout>

@@ -53,6 +53,7 @@ export default function Home({ allPostsData }) {
               <a className={utilsStyle.boldText}>
                {title}
               </a>
+              <p>ddd</p>
             </Link>
             <br />
             <small className={utilsStyle.lightText}>{date}</small>
